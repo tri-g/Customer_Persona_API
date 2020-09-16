@@ -51,3 +51,16 @@ exports.getmapdetails = (req, res) => {
    res.end(JSON.stringify(results));
  });
 };
+exports.categorytop5 = (req, res) => {
+   connection.query('SELECT TRANS_LATITUDE,TRANS_LONGITUDE,CATEGORY,CLIENT_ID,sum(AMOUNT) FROM persona_weighted_transaction where CLIENT_ID=? GROUP BY CATEGORY order by sum(AMOUNT) desc limit 5',[req.params.CLIENT_ID],function (error, results, fields) {
+    if (error) throw error;
+    res.end(JSON.stringify(results));
+  });
+};
+
+exports.categorytop10 = (req, res) => {
+   connection.query('SELECT TRANS_LATITUDE,TRANS_LONGITUDE,CATEGORY,CLIENT_ID,sum(AMOUNT) FROM persona_weighted_transaction where CLIENT_ID=? GROUP BY CATEGORY order by sum(AMOUNT) desc limit 10',[req.params.CLIENT_ID],function (error, results, fields) {
+    if (error) throw error;
+    res.end(JSON.stringify(results));
+  });
+};
