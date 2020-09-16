@@ -46,7 +46,7 @@ connection.query('select client_id,first,last,email from persona_demographics',f
 
 
 exports.getmapdetails = (req, res) => {
-  connection.query('SELECT TRANS_LATITUDE,TRANS_LONGITUDE,CATEGORY FROM mypersonadb.persona_weighted_transaction limit 10',function (error, results, fields) {
+  connection.query('SELECT TRANS_LATITUDE,TRANS_LONGITUDE,CATEGORY FROM mypersonadb.persona_weighted_transaction limit 50',function (error, results, fields) {
    if (error) throw error;
    res.end(JSON.stringify(results));
  });
